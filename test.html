@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notify.js Test</title>
+    <link rel="stylesheet" href="notify-simple.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn:hover { opacity: 0.9; }
+        .btn-success { background: #4CAF50; }
+        .btn-error { background: #F44336; }
+        .btn-warning { background: #FF9800; }
+        .btn-info { background: #2196F3; }
+        .btn-group { margin: 20px 0; }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Notify.js Test Suite</h1>
+    
+    <div class="test-section">
+        <h2>Basic Notifications</h2>
+        <div class="btn-group">
+            <button class="btn btn-success" onclick="toastr.success('Operation completed successfully!')">Show Success</button>
+            <button class="btn btn-error" onclick="toastr.error('An error occurred while processing your request.')">Show Error</button>
+            <button class="btn btn-warning" onclick="toastr.warning('Please check your input data.')">Show Warning</button>
+            <button class="btn btn-info" onclick="toastr.info('New update available!')">Show Info</button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Notification with Options</h2>
+        <div class="btn-group">
+            <button class="btn" onclick="toastr('success', 'This will close in 5 seconds', {timeout: 5000})">5s Timeout</button>
+            <button class="btn" onclick="toastr('info', 'Click to close', {closeOnClick: true, timeout: 0})">Click to Close</button>
+            <button class="btn" onclick="toastr('warning', 'Top Right Position', {position: 'top-right'})">Top Right</button>
+            <button class="btn" onclick="toastr('error', 'Bottom Center', {position: 'bottom-center'})">Bottom Center</button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Programmatic Control</h2>
+        <div class="btn-group">
+            <button class="btn" onclick="const notif = toastr('info', 'Click close button to dismiss', {timeout: 0})">Create Persistent Notification</button>
+            <button class="btn" onclick="toastr.closeAll()">Close All Notifications</button>
+        </div>
+    </div>
+
+    <script src="notify-simple.js"></script>
+    <script>
+        // Test auto-initialization
+        console.log('toastr available:', typeof toastr !== 'undefined');
+        
+        // Test direct Notify usage
+        console.log('Notify available:', typeof Notify !== 'undefined');
+    </script>
+</body>
+</html>
