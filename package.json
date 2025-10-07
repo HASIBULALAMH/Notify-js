@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "@hasibulalam/notify-js",
+  "version": "2.0.1",
+  "description": "A lightweight, toastr.js compatible notification library with zero dependencies. Simple API: toastr('success', 'Message')",
+  "main": "toastr-simple.js",
+  "style": "toastr-simple.css",
+  "files": [
+    "toastr-simple.js",
+    "toastr-simple.min.js",
+    "toastr-simple.css",
+    "toastr-simple.min.css"
+  ],
+  "keywords": [
+    "toast",
+    "notification",
+    "toastr",
+    "alert",
+    "notify",
+    "message",
+    "popup",
+    "lightweight",
+    "no-jquery",
+    "vanilla-js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "minify-js": "terser toastr-simple.js -o toastr-simple.min.js --compress --mangle",
+    "minify-css": "cleancss -o toastr-simple.min.css toastr-simple.css",
+    "build": "npm run minify-js && npm run minify-css",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "terser": "^5.16.6",
+    "clean-css-cli": "^5.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hasibulalam/notify-js.git"
+  },
+  "author": "Hasibul Alam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hasibulalam/notify-js/issues"
+  },
+  "homepage": "https://github.com/hasibulalam/notify-js#readme"
+}

@@ -1,0 +1,210 @@
+/* Notify.css - A lightweight, framework-agnostic toast notification library */
+
+.notify-container {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 320px;
+}
+
+.notify-container.top-right {
+    top: 0;
+    right: 0;
+}
+
+.notify-container.top-left {
+    top: 0;
+    left: 0;
+}
+
+.notify-container.bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+.notify-container.bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+.notify-toast {
+    position: relative;
+    padding: 12px 16px;
+    border-radius: 4px;
+    color: #FFFFFF;
+    background: #323232;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    pointer-events: auto;
+    transform: translateZ(0);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.notify-toast.show {
+    opacity: 1;
+    max-height: 200px;
+    margin: 2px 0;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.notify-toast.hide {
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+    animation: fadeOut 0.3s ease-in;
+}
+
+/* Notification type colors */
+.notify-toast.success {
+    background-color: #4CAF50;
+}
+
+.notify-toast.error {
+    background-color: #F44336;
+}
+
+.notify-toast.warning {
+    background-color: #FF9800;
+}
+
+.notify-toast.info {
+    background-color: #2196F3;
+}
+
+/* Icon */
+.notify-icon {
+    margin-right: 12px;
+    font-weight: bold;
+    font-size: 18px;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Content */
+.notify-content {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+/* Close button */
+.notify-close {
+    margin-left: 12px;
+    cursor: pointer;
+    opacity: 0.7;
+    font-size: 16px;
+    line-height: 1;
+    transition: opacity 0.2s;
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notify-close:hover {
+    opacity: 1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes fadeOut {
+    from { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+    to { 
+        opacity: 0; 
+        transform: translateY(-10px); 
+    }
+}
+
+/* Position-specific animations */
+.notify-container.top-right .notify-toast.show {
+    animation: slideInRight 0.3s ease-out;
+}
+
+.notify-container.top-left .notify-toast.show {
+    animation: slideInLeft 0.3s ease-out;
+}
+
+.notify-container.bottom-right .notify-toast.show {
+    animation: slideInRight 0.3s ease-out;
+}
+
+.notify-container.bottom-left .notify-toast.show {
+    animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from { 
+        transform: translateX(100%); 
+        opacity: 0;
+    }
+    to { 
+        transform: translateX(0); 
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from { 
+        transform: translateX(-100%); 
+        opacity: 0;
+    }
+    to { 
+        transform: translateX(0); 
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .notify-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px;
+    }
+    
+    .notify-toast {
+        width: 100%;
+        margin: 2px 0;
+    }
+}
+
+/* Print styles */
+@media print {
+    .notify-container {
+        display: none;
+    }
+}

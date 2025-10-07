@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toastr.js Compatible Notification Demo</title>
+    <!-- Using CDN -->
+    <link href="https://cdn.jsdelivr.net/gh/yourusername/notify/notify.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/yourusername/notify/notify.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn:hover { opacity: 0.9; }
+        .btn-success { background: #4CAF50; }
+        .btn-error { background: #F44336; }
+        .btn-warning { background: #FF9800; }
+        .btn-info { background: #2196F3; }
+        .btn-group { margin: 20px 0; }
+        .code {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Toastr.js Compatible Notification</h1>
+    
+    <div class="btn-group">
+        <button class="btn btn-success" onclick="toastr.success('Data saved successfully!')">Success</button>
+        <button class="btn btn-error" onclick="toastr.error('Something went wrong!')">Error</button>
+        <button class="btn btn-warning" onclick="toastr.warning('Please check your input!')">Warning</button>
+        <button class="btn btn-info" onclick="toastr.info('This is an information message')">Info</button>
+    </div>
+
+    <h2>Usage:</h2>
+    <h3>1. Include CSS and JS</h3>
+    <div class="code">
+        &lt;!-- Using CDN --&gt;
+        &lt;link href="https://cdn.jsdelivr.net/gh/yourusername/notify/notify.min.css" rel="stylesheet"&gt;
+        &lt;script src="https://cdn.jsdelivr.net/gh/yourusername/notify/notify.min.js"&gt;&lt;/script&gt;
+        
+        &lt;!-- OR download and include locally --&gt;
+        &lt;link href="notify.min.css" rel="stylesheet"&gt;
+        &lt;script src="notify.min.js"&gt;&lt;/script&gt;
+    </div>
+
+    <h3>2. Show Notifications</h3>
+    <div class="code">
+        // Basic usage
+        toastr.success('Data saved successfully!');
+        toastr.error('Something went wrong!');
+        toastr.warning('Please check your input!');
+        toastr.info('This is an information message');
+        
+        // With options
+        toastr.success('Custom message', {
+            duration: 5000, // 5 seconds
+            position: 'bottom-right',
+            closeButton: true
+        });
+        
+        // Configure defaults
+        toastr.config({
+            position: 'top-right',
+            duration: 3000,
+            closeButton: true,
+            preventDuplicates: true
+        });
+    </div>
+
+    <h3>3. NPM Installation (optional)</h3>
+    <div class="code">
+        npm install your-toastr-package
+        
+        // In your JavaScript file
+        import toastr from 'your-toastr-package';
+        import 'your-toastr-package/dist/notify.min.css';
+    </div>
+
+    <script>
+        // Example of programmatic usage
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show welcome message
+            setTimeout(() => {
+                toastr.success('Welcome to the toastr.js compatible notification system!');
+            }, 1000);
+            
+            // Example of custom configuration
+            toastr.config({
+                position: 'top-right',
+                duration: 3000,
+                closeButton: true,
+                preventDuplicates: true
+            });
+        });
+    </script>
+</body>
+</html>

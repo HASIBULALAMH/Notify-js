@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notify.js - Lightweight Toast Notifications</title>
+    <link rel="stylesheet" href="notify.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background: #3498db;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .btn-success { background: #2ecc71; }
+        .btn-error { background: #e74c3c; }
+        .btn-warning { background: #f39c12; }
+        .btn-info { background: #3498db; }
+        .btn-custom { background: #9b59b6; }
+        .btn-group {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .code-block {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .feature {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .feature h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Notify.js</h1>
+        <p>A lightweight, framework-agnostic toast notification library with zero dependencies.</p>
+        
+        <div class="feature">
+            <h3>Basic Usage</h3>
+            <p>Show different types of notifications with a single line of code:</p>
+            <div class="btn-group">
+                <button class="btn btn-success" onclick="Notify.success('Operation completed successfully!')">Success</button>
+                <button class="btn btn-error" onclick="Notify.error('Something went wrong!')">Error</button>
+                <button class="btn btn-warning" onclick="Notify.warning('Please check your input!')">Warning</button>
+                <button class="btn btn-info" onclick="Notify.info('New message received')">Info</button>
+            </div>
+            <div class="code-block">
+                <pre>// Show a success notification
+Notify.success('Operation completed successfully!');
+
+// Show an error notification
+Notify.error('Something went wrong!');
+
+// Show a warning notification
+Notify.warning('Please check your input!');
+
+// Show an info notification
+Notify.info('New message received');</pre>
+            </div>
+        </div>
+
+        <div class="feature">
+            <h3>Customization</h3>
+            <p>Customize the appearance and behavior of notifications:</p>
+            <div class="btn-group">
+                <button class="btn" onclick="Notify.success('This will stay longer', { duration: 10000 })">Longer Duration</button>
+                <button class="btn" onclick="Notify.info('No auto-close', { duration: 0 })">No Auto-Close</button>
+                <button class="btn" onclick="Notify.info('Bottom left position', { position: 'bottom-left' })">Bottom Left</button>
+                <button class="btn" onclick="Notify.info('Custom Color', { 
+                    colors: { 
+                        info: '#9b59b6',
+                        text: '#fff'
+                    } 
+                })">Custom Color</button>
+            </div>
+            <div class="code-block">
+                <pre>// Custom duration (10 seconds)
+Notify.success('This will stay longer', { duration: 10000 });
+
+// No auto-close
+Notify.info('No auto-close', { duration: 0 });
+
+// Change position
+Notify.info('Bottom left position', { position: 'bottom-left' });
+
+// Custom colors
+Notify.info('Custom Color', { 
+    colors: { 
+        info: '#9b59b6',
+        text: '#fff'
+    } 
+});</pre>
+            </div>
+        </div>
+
+        <div class="feature">
+            <h3>Global Configuration</h3>
+            <p>Configure default settings for all notifications:</p>
+            <div class="btn-group">
+                <button class="btn" onclick="setDefaultPosition('top-right')">Top Right</button>
+                <button class="btn" onclick="setDefaultPosition('top-left')">Top Left</button>
+                <button class="btn" onclick="setDefaultPosition('bottom-right')">Bottom Right</button>
+                <button class="btn" onclick="setDefaultPosition('bottom-left')">Bottom Left</button>
+            </div>
+            <div class="code-block">
+                <pre>// Set default configuration
+Notify.config({
+    position: 'bottom-right',
+    duration: 5000,
+    preventDuplicates: true,
+    maxToasts: 5,
+    closeButton: true,
+    icons: {
+        success: '✓',
+        error: '✕',
+        warning: '!',
+        info: 'i'
+    },
+    colors: {
+        success: '#4CAF50',
+        error: '#F44336',
+        warning: '#FF9800',
+        info: '#2196F3',
+        text: '#FFFFFF',
+        background: '#323232',
+        close: '#FFFFFF'
+    }
+});</pre>
+            </div>
+        </div>
+
+        <div class="feature">
+            <h3>Advanced Usage</h3>
+            <p>Handle notifications programmatically:</p>
+            <div class="btn-group">
+                <button class="btn" onclick="showProgrammatic()">Programmatic Control</button>
+                <button class="btn" onclick="Notify.closeAll()">Close All</button>
+            </div>
+            <div class="code-block">
+                <pre>// Get a reference to a notification
+const notification = Notify.info('Click to close', { 
+    duration: 0 
+});
+
+// Close it programmatically
+setTimeout(() => {
+    notification.close();
+}, 3000);
+
+// Close all notifications
+Notify.closeAll();</pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="notify.js"></script>
+    <script>
+        // Example of programmatic control
+        function showProgrammatic() {
+            const notification = Notify.info('This will close in 3 seconds', { 
+                duration: 0 
+            });
+            
+            setTimeout(() => {
+                notification.close();
+                Notify.success('Notification closed programmatically!');
+            }, 3000);
+        }
+
+        // Example of setting default position
+        function setDefaultPosition(position) {
+            Notify.config({ position });
+            Notify.info(`Default position set to ${position}`);
+        }
+
+        // Show welcome message
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                Notify.success('Welcome to Notify.js!', { duration: 3000 });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
